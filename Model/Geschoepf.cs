@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Geschoepf
+    public class Geschoepf
     {
         String name;
         int kampfgeschick;

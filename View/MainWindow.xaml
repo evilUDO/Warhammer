@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1050">
-    <Grid Margin="10">
+    <Window.Background>
+        <ImageBrush ImageSource="H:\Eigene Dateien\C#-Projekt\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
+    </Window.Background>
+    <Grid Margin="10" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>

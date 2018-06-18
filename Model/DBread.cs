@@ -12,6 +12,7 @@ namespace Model
     {
         private OleDbConnection con;
         private OleDbCommand cmd;
+        private Geschoepf g;
 
         public DBread(ObservableCollection<Geschoepf> charaktere, ObservableCollection<Geschoepf> gegner)
         {
@@ -33,7 +34,7 @@ namespace Model
             OleDbDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Geschoepf g = mkGeschoepf(reader);
+                g = mkGeschoepf(reader);
                 gegner.Add(g);
             }
             reader.Close();
@@ -45,7 +46,7 @@ namespace Model
             OleDbDataReader reader = cmd.ExecuteReader();
             while(reader.Read())
             {
-                Geschoepf g = mkGeschoepf(reader);
+                g = mkGeschoepf(reader);
                 charaktere.Add(g);
             }
             reader.Close();

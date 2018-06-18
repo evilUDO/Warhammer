@@ -17,6 +17,7 @@ namespace Model
         int initiative;
         int aktion;
         int waffenbonus;
+        int ruestungsbonus;
 
         public string Name
         {
@@ -132,6 +133,19 @@ namespace Model
             set
             {
                 waffenbonus = value;
+            }
+        }
+
+        public int Ruestungsbonus
+        {
+            get
+            {
+                return ruestungsbonus;
+            }
+
+            set
+            {
+                ruestungsbonus = value;
             }
         }
     }

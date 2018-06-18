@@ -12,7 +12,7 @@
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
     <Window.Background>
-        <ImageBrush ImageSource="H:\Eigene Dateien\C#-Projekt\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
+        <ImageBrush ImageSource="bin\Debug\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
     </Window.Background>
     <Grid Margin="10" >
         <Grid.ColumnDefinitions>
@@ -27,7 +27,7 @@
             <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Warhammer - Das Rollenspiel" Margin="5"/>
+        <TextBlock Text="Warhammer - Das Rollenspiel" Margin="5" Style="{StaticResource textBlockLayoutUe}" />
         <Button x:Name="buttonWuerfeln" Content="Würfeln" Margin="100,15" Grid.Row="1"/>
         <Button x:Name="buttonWeiter" Content="Weiter" Margin="150,20" Grid.Row="3"/>
         <Button x:Name="buttonAngriff" Content="Angreifen" Margin="150,20" Grid.Row="2"/>
@@ -50,21 +50,21 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Spieler"/>
+            <TextBlock Text="Spieler" Style="{StaticResource textBlockLayoutUe}" />
             <ComboBox x:Name="comboBoxCharakter" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10"/>
             <Button x:Name="buttonAddChar" Content="Char. add" Grid.Column="2" Margin="5"/>
             <Button x:Name="buttonDelChar" Content="Char. entf." Grid.Column="2" Grid.Row="1" Margin="5"/>
             <ListBox x:Name="listKampfchar" Grid.Column="3" Grid.RowSpan="6"/>
-            <TextBlock Text="Name: " Grid.Row="2" />
-            <TextBlock Text="Kampfgeschick: " Grid.Row="3"/>
-            <TextBlock Text="Stärke: " Grid.Row="4"/>
-            <TextBlock Text="Widerstand: " Grid.Row="5"/>
-            <TextBlock Text="Lebenspunkte: " Grid.Row="6"/>
-            <TextBlock Name="textBlockName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <TextBlock Name="textBlockKG" Grid.Row="3" Grid.Column="1"/>
-            <TextBlock Name="textBlockS" Grid.Row="4" Grid.Column="1"/>
-            <TextBlock Name="textBlockW" Grid.Row="5" Grid.Column="1"/>
-            <TextBlock Name="textBlockLP" Grid.Row="6" Grid.Column="1"/>
+            <TextBlock Text="Name: " Grid.Row="2" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Kampfgesch.: " Grid.Row="3" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Stärke: " Grid.Row="4" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Widerstand: " Grid.Row="5" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Lebenspunkte: " Grid.Row="6" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockKG" Grid.Row="3" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockS" Grid.Row="4" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockW" Grid.Row="5" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockLP" Grid.Row="6" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
         </Grid>
         
         <Grid Margin="10" Grid.Row="4" Grid.Column="3" Grid.RowSpan="4">
@@ -84,21 +84,21 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Gegner"/>
+            <TextBlock Text="Gegner" Style="{StaticResource textBlockLayoutUe}" />
             <ComboBox x:Name="comboBoxGegner" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10"/>
             <Button x:Name="buttonAddGeg" Content="Geg. add" Grid.Column="2" Margin="5"/>
             <Button x:Name="buttonDelGeg" Content="Geg. entf." Grid.Column="2" Grid.Row="1" Margin="5"/>
             <ListBox x:Name="listKampfgeg" Grid.Column="3" Grid.RowSpan="6"/>
-            <TextBlock Text="Name: " Grid.Row="2" />
-            <TextBlock Text="Kampfgeschick: " Grid.Row="3"/>
-            <TextBlock Text="Stärke: " Grid.Row="4"/>
-            <TextBlock Text="Widerstand: " Grid.Row="5"/>
-            <TextBlock Text="Lebenspunkte: " Grid.Row="6"/>
-            <TextBlock Name="textBlockGegName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <TextBlock Name="textBlockGegKG" Grid.Row="3" Grid.Column="1"/>
-            <TextBlock Name="textBlockGegS" Grid.Row="4" Grid.Column="1"/>
-            <TextBlock Name="textBlockGegW" Grid.Row="5" Grid.Column="1"/>
-            <TextBlock Name="textBlockGegLP" Grid.Row="6" Grid.Column="1"/>
+            <TextBlock Text="Name: " Grid.Row="2" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Kampfgesch.: " Grid.Row="3" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Stärke: " Grid.Row="4" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Widerstand: " Grid.Row="5" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Text="Lebenspunkte: " Grid.Row="6" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockGegName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockGegKG" Grid.Row="3" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockGegS" Grid.Row="4" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockGegW" Grid.Row="5" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
+            <TextBlock Name="textBlockGegLP" Grid.Row="6" Grid.Column="1" Style="{StaticResource textBlockLayout}" />
         </Grid>
     </Grid>
 </Window>

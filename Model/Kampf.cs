@@ -74,5 +74,45 @@ namespace Model
 
         }
 
+        public int[] Wuerfeln()
+        {
+            int[] werte = new int[3];
+            int ergebnis = 0;
+            int trefferzone = 0;
+
+            Random rdm = new Random();
+            int wert1 = rdm.Next(0, 10);
+            int wert0 = rdm.Next(0, 10);
+
+            ergebnis = wert1 * 10 + wert0;
+            if (ergebnis == 0)
+            {
+                ergebnis = 100;
+            }
+
+            trefferzone = wert0 * 10 + wert1;
+            if(trefferzone == 0)
+            {
+                trefferzone = 100;
+            }
+
+            int schaden = rdm.Next(1, 7);
+
+            werte[0] = ergebnis;
+            werte[1] = trefferzone;
+            werte[2] = schaden;
+            return werte;
+        }
+
+        public int wuerfelnW6()
+        {
+            int ergebnis;
+
+            Random rdm = new Random();
+            ergebnis = rdm.Next(1, 7);
+
+            return ergebnis;
+        }
+
     }
 }

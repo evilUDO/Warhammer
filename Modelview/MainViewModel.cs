@@ -12,6 +12,7 @@ namespace Viewmodel
     {
         Kampf warhammerKampf = null;
         private ICommand addGegCommand;
+        private ICommand buttonWuerfeln;
 
         private ICommand addCharCommand;
 
@@ -71,6 +72,19 @@ namespace Viewmodel
             }
         }
 
+        public ICommand ButtonWuerfeln
+        {
+            get
+            {
+                return buttonWuerfeln;
+            }
+
+            set
+            {
+                buttonWuerfeln = value;
+            }
+        }
+
         public MainViewModel()
         {
             warhammerKampf = new Kampf();
@@ -81,6 +95,7 @@ namespace Viewmodel
             this.NaechsterCommand = new UserCommand(new Action<object>(Naechster));
 
             this.AngriffsCommand = new UserCommand(new Action<object>(Angriff));
+            this.ButtonWuerfeln = new UserCommand(new Action<object>(Wuerfeln));
         }
 
         private void AddGegner(Object obj)
@@ -105,6 +120,11 @@ namespace Viewmodel
         {
             Geschoepf verteidiger = (Geschoepf)obj;
             warhammerKampf.pruefeWaffe(verteidiger);
+        }
+
+        private void Wuerfeln(Object obj)
+        {
+            warhammerKampf.Wuerfeln();
         }
 
     }

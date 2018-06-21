@@ -20,6 +20,14 @@ namespace Model
         Geschoepf aktuellerAngreifer;
         Int32 index = 0;
         Int32 maxAnzahl = 0;
+        int[] werte = new int[3];
+
+        public Kampf()
+        {
+            alleSpieler = new ObservableCollection<Geschoepf>();
+            alleGegner = new ObservableCollection<Geschoepf>();
+            new DBread(alleSpieler, alleGegner);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -85,9 +93,8 @@ namespace Model
             AktuellerAngreifer = alleImKampf.ElementAt(index);
         }
 
-        public int[] Wuerfeln()
+        public void Wuerfeln()
         {
-            int[] werte = new int[3];
             int ergebnis = 0;
             int trefferzone = 0;
 
@@ -112,7 +119,6 @@ namespace Model
             werte[0] = ergebnis;
             werte[1] = trefferzone;
             werte[2] = schaden;
-            return werte;
         }
 
         public int WuerfelnW6()

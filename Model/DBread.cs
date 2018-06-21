@@ -34,7 +34,8 @@ namespace Model
             OleDbDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                g = mkGeschoepf(reader);
+                g = new Geschoepf();
+                g = MkGeschoepf(reader);
                 gegner.Add(g);
             }
             reader.Close();
@@ -46,26 +47,30 @@ namespace Model
             OleDbDataReader reader = cmd.ExecuteReader();
             while(reader.Read())
             {
-                g = mkGeschoepf(reader);
+                g = new Geschoepf();
+                g = MkGeschoepf(reader);
                 charaktere.Add(g);
             }
             reader.Close();
         }
 
-        private Geschoepf mkGeschoepf(OleDbDataReader reader)
+        private Geschoepf MkGeschoepf(OleDbDataReader reader)
         {
-            g.Name = reader.GetString(0);
-            g.Kampfgeschick = reader.GetInt32(1);
-            g.Ballistischefertigkeiten = reader.GetInt32(2);
-            g.Staerke = reader.GetInt32(3);
-            g.Widerstand = reader.GetInt32(4);
-            g.Lebenspunkte = reader.GetInt32(5);
-            g.Initiative = reader.GetInt32(6);
-            g.Aktion = reader.GetInt32(7);
-            g.Waffenbonus = reader.GetInt32(8);
-            g.Ruestungsbonus = reader.GetInt32(9);
+            int i = 1;
+            g.Name = reader.GetString(i++);
+            g.Kampfgeschick = reader.GetInt32(i++);
+            g.Ballistischefertigkeiten = reader.GetInt32(i++);
+            g.Staerke = reader.GetInt32(i++);
+            g.Widerstand = reader.GetInt32(i++);
+            g.Lebenspunkte = reader.GetInt32(i++);
+            g.Initiative = reader.GetInt32(i++);
+            g.Aktion = reader.GetInt32(i++);
+            g.Waffenbonus = reader.GetInt32(i++);
+            g.Ruestungsbonus = reader.GetInt32(i);
 
             return g;
         }
+
+
     }
 }

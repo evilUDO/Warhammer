@@ -12,7 +12,7 @@
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
     <Window.Background>
-        <ImageBrush ImageSource="bin\Debug\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
+        <ImageBrush ImageSource="H:\Eigene Dateien\C#-Projekt\Warhammer\View\bin\Debug\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
     </Window.Background>
     <Grid Margin="10" >
         <Grid.ColumnDefinitions>

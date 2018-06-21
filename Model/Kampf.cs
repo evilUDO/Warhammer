@@ -55,24 +55,23 @@ namespace Model
                 }
             }
 
-            maxAnzahl = alleImKampf.Count();
-            alleImKampf.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
             
+            AktuallisiereAlleImKampf();
 
             PruefeAktuell();
+        }
+
+        private void AktuallisiereAlleImKampf()
+        {
+            maxAnzahl = alleImKampf.Count();
+            alleImKampf.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
         }
 
 
         public void PruefeAktuell()
         {
             AktuellerAngreifer = alleImKampf.ElementAt(index);
-            Mark();
+        
         }
-
-        public void Mark()
-        {
-
-        }
-
     }
 }

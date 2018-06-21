@@ -13,6 +13,12 @@ namespace Viewmodel
         Kampf warhammerKampf = null;
         private ICommand addGegCommand;
 
+        private ICommand addCharCommand;
+
+        private ICommand naechsterCommand;
+
+        private ICommand angriffsCommand;
+
         public ICommand AddGegCommand
         {
             get
@@ -26,16 +32,79 @@ namespace Viewmodel
             }
         }
 
+        public ICommand AddCharCommand
+        {
+            get
+            {
+                return addCharCommand;
+            }
+
+            set
+            {
+                addCharCommand = value;
+            }
+        }
+
+        public ICommand NaechsterCommand
+        {
+            get
+            {
+                return naechsterCommand;
+            }
+
+            set
+            {
+                naechsterCommand = value;
+            }
+        }
+
+        public ICommand AngriffsCommand
+        {
+            get
+            {
+                return angriffsCommand;
+            }
+
+            set
+            {
+                angriffsCommand = value;
+            }
+        }
+
         public MainViewModel()
         {
-           warhammerKampf = new Kampf();
+            warhammerKampf = new Kampf();
             this.AddGegCommand = new UserCommand(new Action<object>(AddGegner));
+
+            this.AddCharCommand = new UserCommand(new Action<object>(AddCharakter));
+
+            this.NaechsterCommand = new UserCommand(new Action<object>(Naechster));
+
+            this.AngriffsCommand = new UserCommand(new Action<object>(Angriff));
         }
 
         private void AddGegner(Object obj)
         {
             Geschoepf gesch = (Geschoepf)obj;
             warhammerKampf.FuegeGegnerHinzu(gesch);
+        }
+
+
+        private void AddCharakter(Object obj)
+        {
+            Geschoepf gesch = (Geschoepf)obj;
+            warhammerKampf.FuegeCharakterHinzu(gesch);
+        }
+
+        private void Naechster(Object obj)
+        {
+            warhammerKampf.NaechsterSpieler();
+        }
+
+        private void Angriff(Object obj)
+        {
+            Geschoepf verteidiger = (Geschoepf)obj;
+            warhammerKampf.pruefeWaffe(verteidiger);
         }
 
     }

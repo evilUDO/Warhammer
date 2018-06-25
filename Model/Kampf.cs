@@ -14,6 +14,7 @@ namespace Model
         ObservableCollection<Geschoepf> alleSpieler = null;
         ObservableCollection<Geschoepf> gegnerImKampf = null;
         ObservableCollection<Geschoepf> spielerImKampf = null;
+        ObservableCollection<String> protokollSheet = null;
 
         List<Geschoepf> alleImKampf = null;
 
@@ -50,6 +51,19 @@ namespace Model
             {
                 aktuellerAngreifer = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("aktAngr"));
+            }
+        }
+
+        public ObservableCollection<string> ProtokollSheet
+        {
+            get
+            {
+                return protokollSheet;
+            }
+
+            set
+            {
+                protokollSheet = value;
             }
         }
 
@@ -191,9 +205,13 @@ namespace Model
         {
             if (werte[0] == 1 || werte[0] == 2)
             {
-
+                
             }
             else if (werte[0] == 99 || werte[0] == 100)
+            {
+
+            }
+            else
             {
 
             }

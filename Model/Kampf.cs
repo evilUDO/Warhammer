@@ -144,9 +144,21 @@ namespace Model
             PruefeAktuell();
         }
 
-        public void pruefeWaffe(Geschoepf verteidiger)
+        public void PruefeWaffe(Geschoepf verteidiger)
         {
+            PruefeTreffer(verteidiger);
+        }
 
+        public void PruefeTreffer(Geschoepf verteidiger)
+        {
+            if (werte[0] == 1 || werte[0] == 2)
+            {
+
+            }
+            else if (werte[0] == 99 || werte[0] == 100)
+            {
+
+            }
         }
 
     }

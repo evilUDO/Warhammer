@@ -18,6 +18,7 @@ namespace Model
         List<Geschoepf> alleImKampf = null;
 
         Geschoepf aktuellerAngreifer;
+        Geschoepf aktuellerGegner;
         Int32 index = 0;
         Int32 maxAnzahl = 0;
         int[] werte = new int[3];
@@ -121,14 +122,51 @@ namespace Model
             werte[2] = schaden;
         }
 
-        public int WuerfelnW6()
+        private Boolean Schadensberechnung(Geschoepf angreifer, Geschoepf ziel)
         {
-            int ergebnis;
+            ziel.AktuelleLP -= angreifer.Staerke + angreifer.Waffenbonus + werte[2] - ziel.Widerstand - ziel.Ruestungsbonus;
 
-            Random rdm = new Random();
-            ergebnis = rdm.Next(1, 7);
+            if (ziel.Lebenspunkte > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
-            return ergebnis;
+        public void Angriff()
+        {
+            if(aktuellerAngreifer.Kampfgeschick > werte[1])
+            {
+                if(Schadensberechnung(AktuellerAngreifer, aktuellerGegner))
+                {
+                    EntferneAusListe();
+                    SchreibeProtokoll(true);
+                }
+                else
+                {
+                    SchreibeProtokoll(false);
+                }
+            }
+            else
+            {
+                String protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "misslingt der Angriff auf", aktuellerGegner.Name);
+            }
+        }
+
+        private void EntferneAusListe()
+        {
+            alleImKampf.Remove(aktuellerGegner);
+            if(spielerImKampf.Contains(aktuellerGegner))
+            {
+                spielerImKampf.Remove(aktuellerGegner);
+            }
+            else
+            {
+                gegnerImKampf.Remove(aktuellerGegner);
+            }
         }
 
         public void NaechsterSpieler()
@@ -161,5 +199,65 @@ namespace Model
             }
         }
 
+        private void SchreibeProtokoll(Boolean tot)
+        {
+            int zone = werte[1];
+            String protokoll;
+            if(tot)
+            {
+                // 1-15 Kopf - 16-35 r. Arm - 36-55 l. Arm - 56-80 Torso - 81-90 r. Bein - 91-100 l. Bein
+                if(zone > 0 && zone <16)
+                {
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                }
+                else if(zone > 15 && zone < 36)
+                {
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                }
+                else if(zone > 35 && zone < 56)
+                {
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                }
+                else if(zone > 55 && zone < 81)
+                {
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                }
+                else if(zone > 80 && zone < 91)
+                {
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                }
+                else if(zone > 91)
+                {
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                }
+            }
+            else
+            {
+                if (zone > 0 && zone < 16)
+                {
+
+                }
+                else if (zone > 15 && zone < 36)
+                {
+
+                }
+                else if (zone > 35 && zone < 56)
+                {
+
+                }
+                else if (zone > 55 && zone < 81)
+                {
+
+                }
+                else if (zone > 80 && zone < 91)
+                {
+
+                }
+                else if (zone > 91)
+                {
+
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace Model
         int aktion;
         int waffenbonus;
         int ruestungsbonus;
+        int aktuelleLP;
 
         public string Name
         {
@@ -146,6 +147,19 @@ namespace Model
             set
             {
                 ruestungsbonus = value;
+            }
+        }
+
+        public int AktuelleLP
+        {
+            get
+            {
+                return aktuelleLP;
+            }
+
+            set
+            {
+                aktuelleLP = value;
             }
         }
     }

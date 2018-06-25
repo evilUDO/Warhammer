@@ -64,23 +64,34 @@ namespace Model
                 }
             }
 
+            AktualisiereAlle();
+        }
+
+        public void FuegeCharakterHinzu(Geschoepf aGesch)
+        {
+            foreach(Geschoepf g in alleSpieler)
+            {
+                if(g.Name.Equals(aGesch.Name))
+                {
+                    spielerImKampf.Add(aGesch);
+                    alleImKampf.Add(aGesch);
+                }
+            }
+
+            AktualisiereAlle();
+        }
+
+        private void AktualisiereAlle()
+        {
             maxAnzahl = alleImKampf.Count();
             alleImKampf.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
-            
-
             PruefeAktuell();
         }
 
-
         public void PruefeAktuell()
         {
+        
             AktuellerAngreifer = alleImKampf.ElementAt(index);
-            Mark();
-        }
-
-        public void Mark()
-        {
-
         }
 
         public void Wuerfeln()
@@ -206,6 +217,9 @@ namespace Model
                 }
                 else if (zone > 55 && zone < 81)
                 {
+        public int WuerfelnW6()
+        {
+            int ergebnis;
 
                 }
                 else if (zone > 80 && zone < 91)
@@ -215,6 +229,26 @@ namespace Model
                 else if (zone > 91)
                 {
 
+        public void NaechsterSpieler()
+        {
+            if (index >= maxAnzahl)
+            {
+                index = 0;
+            }
+            else
+            {
+                index++;
+            }
+            PruefeAktuell();
+        }
+
+        public void pruefeWaffe(Geschoepf verteidiger)
+        {
+
+        }
+
+    }
+}
                 }
             }
         }

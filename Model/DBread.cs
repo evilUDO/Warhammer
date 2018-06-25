@@ -67,7 +67,7 @@ namespace Model
             g.Aktion = reader.GetInt32(i++);
             g.Waffenbonus = reader.GetInt32(i++);
             g.Ruestungsbonus = reader.GetInt32(i);
-            g.AktuelleLP 
+            g.AktuelleLP = g.Lebenspunkte;
 
             return g;
         }

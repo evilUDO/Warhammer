@@ -169,6 +169,24 @@ namespace Model
             }
         }
 
+        public void NaechsterSpieler()
+        {
+            if (index >= maxAnzahl)
+            {
+                index = 0;
+            }
+            else
+            {
+                index++;
+            }
+            PruefeAktuell();
+        }
+
+        public void pruefeWaffe(Geschoepf verteidiger)
+        {
+
+        }
+
         private void SchreibeProtokoll(Boolean tot)
         {
             int zone = werte[1];
@@ -217,9 +235,6 @@ namespace Model
                 }
                 else if (zone > 55 && zone < 81)
                 {
-        public int WuerfelnW6()
-        {
-            int ergebnis;
 
                 }
                 else if (zone > 80 && zone < 91)
@@ -229,26 +244,6 @@ namespace Model
                 else if (zone > 91)
                 {
 
-        public void NaechsterSpieler()
-        {
-            if (index >= maxAnzahl)
-            {
-                index = 0;
-            }
-            else
-            {
-                index++;
-            }
-            PruefeAktuell();
-        }
-
-        public void pruefeWaffe(Geschoepf verteidiger)
-        {
-
-        }
-
-    }
-}
                 }
             }
         }

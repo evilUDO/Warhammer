@@ -196,54 +196,54 @@ namespace Model
                 // 1-15 Kopf - 16-35 r. Arm - 36-55 l. Arm - 56-80 Torso - 81-90 r. Bein - 91-100 l. Bein
                 if(zone > 0 && zone <16)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} zerteilt den Kopf von {1}.", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if(zone > 15 && zone < 36)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} trennt den rechten Arm von {1} ab, sodass er ausblutet", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if(zone > 35 && zone < 56)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} trennt den linken Arm von {1} ab, sodass er ausblutet", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if(zone > 55 && zone < 81)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} rammt seine Waffe {1} in den Bauch und verletzt ihn tödlich", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if(zone > 80 && zone < 91)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} trennt das rechte Bein von {1} ab, sodass er ausblutet", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if(zone > 91)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} trennt das linke Bein von {1} ab, sodass er ausblutet", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
             }
             else
             {
                 if (zone > 0 && zone < 16)
                 {
-
+                    protokoll = String.Format("{0} verwundet den Kopf von {1}.", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if (zone > 15 && zone < 36)
                 {
-
+                    protokoll = String.Format("{0} verwundet den rechten Arm von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if (zone > 35 && zone < 56)
                 {
-
+                    protokoll = String.Format("{0} verwundet den linken Arm von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if (zone > 55 && zone < 81)
                 {
-
+                    protokoll = String.Format("{0} rammt seine Waffe {1} in den Bauch und verwundet ihn", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if (zone > 80 && zone < 91)
                 {
-
+                    protokoll = String.Format("{0} verwundet das rechte Bein von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
                 else if (zone > 91)
                 {
-
+                    protokoll = String.Format("{0} verwundet das linke Bein von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
                 }
             }
         }

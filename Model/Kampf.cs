@@ -259,27 +259,27 @@ namespace Model
             {
                 if (zone > 0 && zone < 16)
                 {
-                    protokoll = String.Format("{0} verwundet den Kopf von {1}.", AktuellerAngreifer.Name, aktuellerGegner.Name);
+                    protokoll = String.Format("{0} verwundet den Kopf von {1}.", AktuellerAngreifer.Name, verteidiger.Name);
                 }
                 else if (zone > 15 && zone < 36)
                 {
-                    protokoll = String.Format("{0} verwundet den rechten Arm von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
+                    protokoll = String.Format("{0} verwundet den rechten Arm von {1}", AktuellerAngreifer.Name, verteidiger.Name);
                 }
                 else if (zone > 35 && zone < 56)
                 {
-                    protokoll = String.Format("{0} verwundet den linken Arm von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
+                    protokoll = String.Format("{0} verwundet den linken Arm von {1}", AktuellerAngreifer.Name, verteidiger.Name);
                 }
                 else if (zone > 55 && zone < 81)
                 {
-                    protokoll = String.Format("{0} rammt seine Waffe {1} in den Bauch und verwundet ihn", AktuellerAngreifer.Name, aktuellerGegner.Name);
+                    protokoll = String.Format("{0} rammt seine Waffe {1} in den Bauch und verwundet ihn", AktuellerAngreifer.Name, verteidiger.Name);
                 }
                 else if (zone > 80 && zone < 91)
                 {
-                    protokoll = String.Format("{0} verwundet das rechte Bein von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
+                    protokoll = String.Format("{0} verwundet das rechte Bein von {1}", AktuellerAngreifer.Name, verteidiger.Name);
                 }
                 else if (zone > 91)
                 {
-                    protokoll = String.Format("{0} verwundet das linke Bein von {1}", AktuellerAngreifer.Name, aktuellerGegner.Name);
+                    protokoll = String.Format("{0} verwundet das linke Bein von {1}", AktuellerAngreifer.Name, verteidiger.Name);
                 }
             }
         }

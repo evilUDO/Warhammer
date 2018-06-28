@@ -162,5 +162,10 @@ namespace Model
                 aktuelleLP = value;
             }
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

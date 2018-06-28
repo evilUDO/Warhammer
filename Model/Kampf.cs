@@ -14,7 +14,9 @@ namespace Model
         ObservableCollection<Geschoepf> alleSpieler = null;
         ObservableCollection<String> protokollSheet = null;
 
-        List<Geschoepf> alleImKampf = null;
+        ObservableCollection<Geschoepf> alleImKampf = null;
+
+        List<Geschoepf> sortierer = null;
 
         Geschoepf aktuellerAngreifer;
         Int32 index = 0;
@@ -25,7 +27,7 @@ namespace Model
         {
             AlleSpieler = new ObservableCollection<Geschoepf>();
             AlleGegner = new ObservableCollection<Geschoepf>();
-            AlleImKampf = new List<Geschoepf>();
+            AlleImKampf = new ObservableCollection<Geschoepf>();
             ProtokollSheet = new ObservableCollection<string>();
             new DBread(AlleSpieler, AlleGegner);
         }
@@ -92,7 +94,7 @@ namespace Model
             }
         }
 
-        public List<Geschoepf> AlleImKampf
+        public ObservableCollection<Geschoepf> AlleImKampf
         {
             get
             {
@@ -105,6 +107,19 @@ namespace Model
             }
         }
 
+        public List<Geschoepf> Sortierer
+        {
+            get
+            {
+                return sortierer;
+            }
+
+            set
+            {
+                sortierer = value;
+            }
+        }
+
         public void FuegeGegnerHinzu(Geschoepf aGesch)
         {
             foreach(Geschoepf g in AlleGegner)
@@ -112,6 +127,7 @@ namespace Model
                 if(g.Name.Equals(aGesch.Name))
                 {
                     AlleImKampf.Add(aGesch);
+                    ProtokolliereBeitritt(aGesch);
                 }
             }
 
@@ -125,16 +141,29 @@ namespace Model
                 if(g.Name.Equals(aGesch.Name))
                 {
                     AlleImKampf.Add(aGesch);
+                    ProtokolliereBeitritt(aGesch);
                 }
             }
 
             AktualisiereAlle();
         }
 
+        private void ProtokolliereBeitritt(Geschoepf g)
+        {
+            ProtokollSheet.Add(String.Format("{0} tritt dem Kampf bei", g.Name));
+        }
+
         private void AktualisiereAlle()
         {
-            maxAnzahl = AlleImKampf.Count();
-            AlleImKampf.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
+            Sortierer = AlleImKampf.ToList<Geschoepf>();
+            maxAnzahl = Sortierer.Count();
+            Sortierer.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
+
+            AlleImKampf.Clear();
+            Sortierer.ForEach((n1) => AlleImKampf.Add(n1));
+
+            Sortierer = null;
+   
             PruefeAktuell();
         }
 

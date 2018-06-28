@@ -32,8 +32,8 @@
         <Button x:Name="buttonWuerfeln" Content="Würfeln" Margin="100,15" Grid.Row="1"/>
         <Button x:Name="buttonWeiter" Content="Weiter" Margin="150,20" Grid.Row="3" Command="{Binding NaechsterCommand}"/>
         <Button x:Name="buttonAngriff" Content="Angreifen" Margin="150,20" Grid.Row="2" Command="{Binding AngriffsCommand}" CommandParameter="{Binding}"/>
-        <ListBox x:Name="listBoxProtokoll" Grid.Row="4" Grid.Column="0"  Margin="15"/>
-        <ListBox x:Name="listBoxTeilnehmer" Grid.RowSpan="5" Grid.Column="2" Margin="15"/>
+        <ListBox x:Name="listBoxProtokoll" Grid.Row="4" Grid.Column="0"  Margin="15" ItemsSource="{Binding Path=WarhammerKampf.ProtokollSheet}"/>
+        <ListBox x:Name="listBoxTeilnehmer" Grid.RowSpan="5" Grid.Column="2" Margin="15" ItemsSource="{Binding Path=WarhammerKampf.AlleImKampf}"/>
 
         <Grid Margin="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

@@ -19,7 +19,6 @@ namespace Model
         List<Geschoepf> alleImKampf = null;
 
         Geschoepf aktuellerAngreifer;
-        Geschoepf aktuellerGegner;
         Int32 index = 0;
         Int32 maxAnzahl = 0;
         int[] werte = new int[3];
@@ -106,6 +105,7 @@ namespace Model
         {
         
             AktuellerAngreifer = alleImKampf.ElementAt(index);
+            protokollSheet.Add(String.Format("{0} {1}", AktuellerAngreifer.Name, "ist nun an der Reihe"));
         }
 
         public void Wuerfeln()
@@ -150,36 +150,36 @@ namespace Model
             }
         }
 
-        public void Angriff()
+        public void Angriff(Geschoepf verteidiger)
         {
             if(aktuellerAngreifer.Kampfgeschick > werte[1])
             {
-                if(Schadensberechnung(AktuellerAngreifer, aktuellerGegner))
+                if(Schadensberechnung(AktuellerAngreifer, verteidiger))
                 {
-                    EntferneAusListe();
-                    SchreibeProtokoll(true);
+                    EntferneAusListe(verteidiger);
+                    SchreibeProtokoll(true, verteidiger);
                 }
                 else
                 {
-                    SchreibeProtokoll(false);
+                    SchreibeProtokoll(false,verteidiger);
                 }
             }
             else
             {
-                String protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "misslingt der Angriff auf", aktuellerGegner.Name);
+                String protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "misslingt der Angriff auf", verteidiger.Name);
             }
         }
 
-        private void EntferneAusListe()
+        private void EntferneAusListe(Geschoepf gesch)
         {
-            alleImKampf.Remove(aktuellerGegner);
-            if(spielerImKampf.Contains(aktuellerGegner))
+            alleImKampf.Remove(gesch);
+            if(spielerImKampf.Contains(gesch))
             {
-                spielerImKampf.Remove(aktuellerGegner);
+                spielerImKampf.Remove(gesch);
             }
             else
             {
-                gegnerImKampf.Remove(aktuellerGegner);
+                gegnerImKampf.Remove(gesch);
             }
         }
 
@@ -203,21 +203,27 @@ namespace Model
 
         public void PruefeTreffer(Geschoepf verteidiger)
         {
+            String protokoll = "";
             if (werte[0] == 1 || werte[0] == 2)
             {
-                
+                protokoll = String.Format("{0} {1} {2} {3}",AktuellerAngreifer.Name,"trifft",verteidiger.Name,"kritisch");
+                protokollSheet.Add(protokoll);
+                Angriff(verteidiger);
             }
             else if (werte[0] == 99 || werte[0] == 100)
             {
-
+                protokoll = String.Format("{0} {1}", AktuellerAngreifer.Name, "verfehlt sein Gegenüber kritisch");
+                protokollSheet.Add(protokoll);
+                Angriff(verteidiger);
             }
             else
             {
-
+                Angriff(verteidiger);
             }
+            
         }
 
-        private void SchreibeProtokoll(Boolean tot)
+        private void SchreibeProtokoll(Boolean tot, Geschoepf verteidiger)
         {
             int zone = werte[1];
             String protokoll;
@@ -226,27 +232,27 @@ namespace Model
                 // 1-15 Kopf - 16-35 r. Arm - 36-55 l. Arm - 56-80 Torso - 81-90 r. Bein - 91-100 l. Bein
                 if(zone > 0 && zone <16)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", verteidiger.Name);
                 }
                 else if(zone > 15 && zone < 36)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", verteidiger.Name);
                 }
                 else if(zone > 35 && zone < 56)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", verteidiger.Name);
                 }
                 else if(zone > 55 && zone < 81)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", verteidiger.Name);
                 }
                 else if(zone > 80 && zone < 91)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", verteidiger.Name);
                 }
                 else if(zone > 91)
                 {
-                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", aktuellerGegner.Name);
+                    protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "zerteilt den Kopf von", verteidiger.Name);
                 }
             }
             else

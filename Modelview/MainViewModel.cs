@@ -102,9 +102,22 @@ namespace Viewmodel
             }
         }
 
+        public Kampf WarhammerKampf
+        {
+            get
+            {
+                return warhammerKampf;
+            }
+
+            set
+            {
+                warhammerKampf = value;
+            }
+        }
+
         public MainViewModel()
         {
-            warhammerKampf = new Kampf();
+            WarhammerKampf = new Kampf();
             this.AddGegCommand = new UserCommand(new Action<object>(AddGegner));
 
             this.AddCharCommand = new UserCommand(new Action<object>(AddCharakter));
@@ -126,30 +139,30 @@ namespace Viewmodel
         private void AddGegner(Object obj)
         {
             Geschoepf gesch = (Geschoepf)obj;
-            warhammerKampf.FuegeGegnerHinzu(gesch);
+            WarhammerKampf.FuegeGegnerHinzu(gesch);
         }
 
 
         private void AddCharakter(Object obj)
         {
             Geschoepf gesch = (Geschoepf)obj;
-            warhammerKampf.FuegeCharakterHinzu(gesch);
+            WarhammerKampf.FuegeCharakterHinzu(gesch);
         }
 
         private void Naechster(Object obj)
         {
-            warhammerKampf.NaechsterSpieler();
+            WarhammerKampf.NaechsterSpieler();
         }
 
         private void Angriff(Object obj)
         {
             Geschoepf verteidiger = (Geschoepf)obj;
-            warhammerKampf.PruefeWaffe(verteidiger);
+            WarhammerKampf.PruefeWaffe(verteidiger);
         }
 
         private void Wuerfeln(Object obj)
         {
-            warhammerKampf.Wuerfeln();
+            WarhammerKampf.Wuerfeln();
         }
 
     }

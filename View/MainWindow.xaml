@@ -32,8 +32,8 @@
         <Button x:Name="buttonWuerfeln" Content="Würfeln" Margin="100,15" Grid.Row="1"/>
         <Button x:Name="buttonWeiter" Content="Weiter" Margin="150,20" Grid.Row="3" Command="{Binding NaechsterCommand}"/>
         <Button x:Name="buttonAngriff" Content="Angreifen" Margin="150,20" Grid.Row="2" Command="{Binding AngriffsCommand}" CommandParameter="{Binding}"/>
-        <ListBox x:Name="listBoxProtokoll" Grid.Row="4" Grid.Column="0"  Margin="15"/>
-        <ListBox x:Name="listBoxTeilnehmer" Grid.RowSpan="5" Grid.Column="2" Margin="15"/>
+        <ListBox x:Name="listBoxProtokoll" Grid.Row="4" Grid.Column="0"  Margin="15" ItemsSource="{Binding Path=WarhammerKampf.ProtokollSheet}"/>
+        <ListBox x:Name="listBoxTeilnehmer" Grid.RowSpan="5" Grid.Column="2" Margin="15" ItemsSource="{Binding Path=WarhammerKampf.AlleImKampf}"/>
 
         <Grid Margin="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Spieler" Style="{StaticResource textBlockLayoutUe}" />
-            <ComboBox x:Name="comboBoxCharakter" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10" Text="{}"/>
+            <ComboBox x:Name="comboBoxCharakter" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10" ItemsSource="{Binding Path=WarhammerKampf.AlleSpieler}"/>
             <Button x:Name="buttonAddChar" Content="Char. add" Grid.Column="2" Margin="5" Command="{Binding AddCharCommand}" CommandParameter="{Binding ElementName=comboBoxCharakter, Path=SelectedItem}"/>
             <Button x:Name="buttonDelChar" Content="Char. entf." Grid.Column="2" Grid.Row="1" Margin="5" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=listBoxTeilnehmer, Path=SelectedItem}"/>
             <TextBlock Text="Name: " Grid.Row="2" Style="{StaticResource textBlockLayout}" />
@@ -86,7 +86,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Gegner" Style="{StaticResource textBlockLayoutUe}" />
-            <ComboBox x:Name="comboBoxGegner" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10"/>
+            <ComboBox x:Name="comboBoxGegner" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10" ItemsSource="{Binding Path=WarhammerKampf.AlleGegner}"/>
             <Button x:Name="buttonAddGeg" Content="Geg. add" Grid.Column="2" Margin="5" Command="{Binding AddGegCommand}" CommandParameter="{Binding ElementName=comboBoxGegner,Path=SelectedItem}"/>
             <Button x:Name="buttonDelGeg" Content="Geg. entf." Grid.Column="2" Grid.Row="1" Margin="5" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=listBoxTeilnehmer, Path=SelectedItem}"/>
             <TextBlock Text="Name: " Grid.Row="2" Style="{StaticResource textBlockLayout}" />

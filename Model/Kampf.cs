@@ -12,11 +12,11 @@ namespace Model
     {
         ObservableCollection<Geschoepf> alleGegner = null;
         ObservableCollection<Geschoepf> alleSpieler = null;
-        ObservableCollection<Geschoepf> gegnerImKampf = null;
-        ObservableCollection<Geschoepf> spielerImKampf = null;
         ObservableCollection<String> protokollSheet = null;
 
-        List<Geschoepf> alleImKampf = null;
+        ObservableCollection<Geschoepf> alleImKampf = null;
+
+        List<Geschoepf> sortierer = null;
 
         Geschoepf aktuellerAngreifer;
         Int32 index = 0;
@@ -25,9 +25,11 @@ namespace Model
 
         public Kampf()
         {
-            alleSpieler = new ObservableCollection<Geschoepf>();
-            alleGegner = new ObservableCollection<Geschoepf>();
-            new DBread(alleSpieler, alleGegner);
+            AlleSpieler = new ObservableCollection<Geschoepf>();
+            AlleGegner = new ObservableCollection<Geschoepf>();
+            AlleImKampf = new ObservableCollection<Geschoepf>();
+            ProtokollSheet = new ObservableCollection<string>();
+            new DBread(AlleSpieler, AlleGegner);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -66,14 +68,66 @@ namespace Model
             }
         }
 
+        public ObservableCollection<Geschoepf> AlleGegner
+        {
+            get
+            {
+                return alleGegner;
+            }
+
+            set
+            {
+                alleGegner = value;
+            }
+        }
+
+        public ObservableCollection<Geschoepf> AlleSpieler
+        {
+            get
+            {
+                return alleSpieler;
+            }
+
+            set
+            {
+                alleSpieler = value;
+            }
+        }
+
+        public ObservableCollection<Geschoepf> AlleImKampf
+        {
+            get
+            {
+                return alleImKampf;
+            }
+
+            set
+            {
+                alleImKampf = value;
+            }
+        }
+
+        public List<Geschoepf> Sortierer
+        {
+            get
+            {
+                return sortierer;
+            }
+
+            set
+            {
+                sortierer = value;
+            }
+        }
+
         public void FuegeGegnerHinzu(Geschoepf aGesch)
         {
-            foreach(Geschoepf g in alleGegner)
+            foreach(Geschoepf g in AlleGegner)
             {
                 if(g.Name.Equals(aGesch.Name))
                 {
-                    gegnerImKampf.Add(aGesch);
-                    alleImKampf.Add(aGesch);
+                    AlleImKampf.Add(aGesch);
+                    ProtokolliereBeitritt(aGesch);
                 }
             }
 
@@ -82,29 +136,43 @@ namespace Model
 
         public void FuegeCharakterHinzu(Geschoepf aGesch)
         {
-            foreach(Geschoepf g in alleSpieler)
+            foreach(Geschoepf g in AlleSpieler)
             {
                 if(g.Name.Equals(aGesch.Name))
                 {
-                    spielerImKampf.Add(aGesch);
-                    alleImKampf.Add(aGesch);
+                    AlleImKampf.Add(aGesch);
+                    ProtokolliereBeitritt(aGesch);
                 }
             }
 
             AktualisiereAlle();
         }
 
+        private void ProtokolliereBeitritt(Geschoepf g)
+        {
+            ProtokollSheet.Add(String.Format("{0} tritt dem Kampf bei", g.Name));
+        }
+
         private void AktualisiereAlle()
         {
             maxAnzahl = alleImKampf.Count();
             alleImKampf.Sort((n1, n2) => n2.Initiative.CompareTo(n1.Initiative));
+            Sortierer = AlleImKampf.ToList<Geschoepf>();
+            maxAnzahl = Sortierer.Count();
+            Sortierer.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
+
+            AlleImKampf.Clear();
+            Sortierer.ForEach((n1) => AlleImKampf.Add(n1));
+
+            Sortierer = null;
+   
             PruefeAktuell();
         }
 
         public void PruefeAktuell()
         {
         
-            AktuellerAngreifer = alleImKampf.ElementAt(index);
+            AktuellerAngreifer = AlleImKampf.ElementAt(index);
             protokollSheet.Add(String.Format("{0} {1}", AktuellerAngreifer.Name, "ist nun an der Reihe"));
         }
 
@@ -152,34 +220,21 @@ namespace Model
 
         public void Angriff(Geschoepf verteidiger)
         {
-            if(aktuellerAngreifer.Kampfgeschick > werte[1])
+            if (aktuellerAngreifer.Kampfgeschick > werte[1])
             {
-                if(Schadensberechnung(AktuellerAngreifer, verteidiger))
+                if (Schadensberechnung(AktuellerAngreifer, verteidiger))
                 {
-                    EntferneAusListe(verteidiger);
+                    Entferne(verteidiger);
                     SchreibeProtokoll(true, verteidiger);
                 }
                 else
                 {
-                    SchreibeProtokoll(false,verteidiger);
+                    SchreibeProtokoll(false, verteidiger);
                 }
             }
             else
             {
                 String protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "misslingt der Angriff auf", verteidiger.Name);
-            }
-        }
-
-        private void EntferneAusListe(Geschoepf gesch)
-        {
-            alleImKampf.Remove(gesch);
-            if(spielerImKampf.Contains(gesch))
-            {
-                spielerImKampf.Remove(gesch);
-            }
-            else
-            {
-                gegnerImKampf.Remove(gesch);
             }
         }
 

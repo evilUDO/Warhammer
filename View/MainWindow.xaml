@@ -12,7 +12,7 @@
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
     <Window.Background>
-        <ImageBrush ImageSource="H:\Eigene Dateien\Fi 2016 CS\Warhammer\View\bin\debug\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
+        <ImageBrush ImageSource="H:\Eigene Dateien\C#-Projekt\Warhammer\View\bin\Debug\Hintergrund.jpg" Stretch="Fill"></ImageBrush>
     </Window.Background>
     <Grid Margin="10" >
         <Grid.ColumnDefinitions>
@@ -51,7 +51,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Spieler" Style="{StaticResource textBlockLayoutUe}" />
-            <ComboBox x:Name="comboBoxCharakter" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10"/>
+            <ComboBox x:Name="comboBoxCharakter" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10" Text="{}"/>
             <Button x:Name="buttonAddChar" Content="Char. add" Grid.Column="2" Margin="5" Command="{Binding AddCharCommand}" CommandParameter="{Binding ElementName=comboBoxCharakter, Path=SelectedItem}"/>
             <Button x:Name="buttonDelChar" Content="Char. entf." Grid.Column="2" Grid.Row="1" Margin="5"/>
             <ListBox x:Name="listKampfchar" Grid.Column="3" Grid.RowSpan="6"/>

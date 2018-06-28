@@ -126,8 +126,7 @@ namespace Model
             {
                 if(g.Name.Equals(aGesch.Name))
                 {
-                    AlleImKampf.Add(aGesch);
-                    ProtokolliereBeitritt(aGesch);
+                    PruefeName(aGesch);
                 }
             }
 
@@ -140,12 +139,24 @@ namespace Model
             {
                 if(g.Name.Equals(aGesch.Name))
                 {
-                    AlleImKampf.Add(aGesch);
-                    ProtokolliereBeitritt(aGesch);
+                    PruefeName(aGesch);
                 }
             }
 
             AktualisiereAlle();
+        }
+
+        public void PruefeName(Geschoepf aGesch)
+        {
+            if(!AlleImKampf.Contains(aGesch))
+            {
+                AlleImKampf.Add(aGesch);
+                ProtokolliereBeitritt(aGesch);
+            }
+            else
+            {
+                ProtokollSheet.Add("Kämpfer ist schon im Kampf");
+            }
         }
 
         private void ProtokolliereBeitritt(Geschoepf g)
@@ -157,7 +168,7 @@ namespace Model
         {
             Sortierer = AlleImKampf.ToList<Geschoepf>();
             maxAnzahl = Sortierer.Count();
-            Sortierer.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
+            Sortierer.Sort((n1, n2) => n2.Initiative.CompareTo(n1.Initiative));
 
             AlleImKampf.Clear();
             Sortierer.ForEach((n1) => AlleImKampf.Add(n1));

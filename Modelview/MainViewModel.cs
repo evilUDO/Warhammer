@@ -119,7 +119,7 @@ namespace Viewmodel
         private void Angriff(Object obj)
         {
             Geschoepf verteidiger = (Geschoepf)obj;
-            warhammerKampf.pruefeWaffe(verteidiger);
+            warhammerKampf.PruefeWaffe(verteidiger);
         }
 
         private void Wuerfeln(Object obj)

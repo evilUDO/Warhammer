@@ -97,7 +97,7 @@ namespace Model
         private void AktualisiereAlle()
         {
             maxAnzahl = alleImKampf.Count();
-            alleImKampf.Sort((n1, n2) => n1.Initiative.CompareTo(n2.Initiative));
+            alleImKampf.Sort((n1, n2) => n2.Initiative.CompareTo(n1.Initiative));
             PruefeAktuell();
         }
 
@@ -286,9 +286,13 @@ namespace Model
 
         public void Entferne(Geschoepf gesch)
         {
-            if (alleImKampf.Contains(gesch))
+            if (gesch != null)
             {
-                alleImKampf.Remove(gesch); 
+                if (alleImKampf.Contains(gesch))
+                {
+                    alleImKampf.Remove(gesch);
+                    ProtokollSheet.Add(String.Format("{0} hatt den Kampf verlassen", gesch.Name));
+                } 
             }
         }
     }

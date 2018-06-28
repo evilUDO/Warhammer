@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Warhammer - Das Rollenspiel" Margin="5" Style="{StaticResource textBlockLayoutUe}" />
-        <Button x:Name="buttonWuerfeln" Content="Würfeln" Margin="100,15" Grid.Row="1"/>
+        <Button x:Name="buttonWuerfeln" Content="Würfeln" Margin="100,15" Grid.Row="1" Command="{Binding ButtonWuerfeln}"/>
         <Button x:Name="buttonWeiter" Content="Weiter" Margin="150,20" Grid.Row="3" Command="{Binding NaechsterCommand}"/>
         <Button x:Name="buttonAngriff" Content="Angreifen" Margin="150,20" Grid.Row="2" Command="{Binding AngriffsCommand}" CommandParameter="{Binding ElementName=listBoxTeilnehmer, Path=SelectedItem}"/>
         <ListBox x:Name="listBoxProtokoll" Grid.Row="4" Grid.Column="0"  Margin="15" ItemsSource="{Binding Path=WarhammerKampf.ProtokollSheet}"/>
@@ -65,7 +65,7 @@
             <TextBlock Name="textBlockKG" Grid.Row="3" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxCharakter, Path=SelectedItem.Kampfgeschick}"/>
             <TextBlock Name="textBlockS" Grid.Row="4" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxCharakter, Path=SelectedItem.Staerke}"/>
             <TextBlock Name="textBlockW" Grid.Row="5" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxCharakter, Path=SelectedItem.Widerstand}"/>
-            <TextBlock Name="textBlockLP" Grid.Row="6" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxCharakter, Path=SelectedItem.Lebenspunkte}"/>
+            <TextBlock Name="textBlockLP" Grid.Row="6" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxCharakter, Path=SelectedItem.AktuelleLP}"/>
         </Grid>
         
         <Grid Margin="10" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2">
@@ -98,7 +98,7 @@
             <TextBlock Name="textBlockGegKG" Grid.Row="3" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxGegner, Path=SelectedItem.Kampfgeschick}"/>
             <TextBlock Name="textBlockGegS" Grid.Row="4" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxGegner, Path=SelectedItem.Staerke}"/>
             <TextBlock Name="textBlockGegW" Grid.Row="5" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxGegner, Path=SelectedItem.Widerstand}"/>
-            <TextBlock Name="textBlockGegLP" Grid.Row="6" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxGegner, Path=SelectedItem.Lebenspunkte}"/>
+            <TextBlock Name="textBlockGegLP" Grid.Row="6" Grid.Column="1" Style="{StaticResource textBlockLayout}" Text="{Binding ElementName=comboBoxGegner, Path=SelectedItem.AktuelleLP}"/>
         </Grid>
     </Grid>
 </Window>

@@ -211,6 +211,13 @@ namespace Model
             werte[0] = ergebnis;
             werte[1] = trefferzone;
             werte[2] = schaden;
+
+            AusgabeErgebnis();
+        }
+
+        public void AusgabeErgebnis()
+        {
+            ProtokollSheet.Add(String.Format("Ergebnis: {0}, Trefferzone: {1}, Schaden: {2}", werte[0],werte[1],werte[2]));
         }
 
         private Boolean Schadensberechnung(Geschoepf angreifer, Geschoepf ziel)
@@ -229,7 +236,7 @@ namespace Model
 
         public void Angriff(Geschoepf verteidiger)
         {
-            if (aktuellerAngreifer.Kampfgeschick > werte[1])
+            if (aktuellerAngreifer.Kampfgeschick > werte[0])
             {
                 if (Schadensberechnung(AktuellerAngreifer, verteidiger))
                 {
@@ -244,12 +251,13 @@ namespace Model
             else
             {
                 String protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "misslingt der Angriff auf", verteidiger.Name);
+                ProtokollSheet.Add(protokoll);
             }
         }
 
         public void NaechsterSpieler()
         {
-            if (index >= maxAnzahl)
+            if (index >= maxAnzahl-1)
             {
                 index = 0;
             }
@@ -293,7 +301,7 @@ namespace Model
         private void SchreibeProtokoll(Boolean tot, Geschoepf verteidiger)
         {
             int zone = werte[1];
-            String protokoll;
+            String protokoll = "";
             if(tot)
             {
                 // 1-15 Kopf - 16-35 r. Arm - 36-55 l. Arm - 56-80 Torso - 81-90 r. Bein - 91-100 l. Bein
@@ -349,6 +357,7 @@ namespace Model
                     protokoll = String.Format("{0} verwundet das linke Bein von {1}", AktuellerAngreifer.Name, verteidiger.Name);
                 }
             }
+            ProtokollSheet.Add(protokoll);
         }
 
         public void Entferne(Geschoepf gesch)

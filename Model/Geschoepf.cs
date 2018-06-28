@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Model
 {
-    public class Geschoepf
+    public class Geschoepf : INotifyPropertyChanged
     {
         String name;
         int kampfgeschick;
@@ -19,6 +20,15 @@ namespace Model
         int waffenbonus;
         int ruestungsbonus;
         int aktuelleLP;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
+        }
 
         public string Name
         {
@@ -160,6 +170,7 @@ namespace Model
             set
             {
                 aktuelleLP = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("aktuelleLP"));
             }
         }
 

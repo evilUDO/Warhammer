@@ -53,7 +53,7 @@
             <TextBlock Text="Spieler" Style="{StaticResource textBlockLayoutUe}" />
             <ComboBox x:Name="comboBoxCharakter" Grid.Row="1" Grid.ColumnSpan="2" Margin="2,2,10,10" Text="{}"/>
             <Button x:Name="buttonAddChar" Content="Char. add" Grid.Column="2" Margin="5" Command="{Binding AddCharCommand}" CommandParameter="{Binding ElementName=comboBoxCharakter, Path=SelectedItem}"/>
-            <Button x:Name="buttonDelChar" Content="Char. entf." Grid.Column="2" Grid.Row="1" Margin="5"/>
+            <Button x:Name="buttonDelChar" Content="Char. entf." Grid.Column="2" Grid.Row="1" Margin="5" Command="{Binding RvCharCommand}"/>
             <ListBox x:Name="listKampfchar" Grid.Column="3" Grid.RowSpan="6"/>
             <TextBlock Text="Name: " Grid.Row="2" Style="{StaticResource textBlockLayout}" />
             <TextBlock Text="Kampfgesch.: " Grid.Row="3" Style="{StaticResource textBlockLayout}" />

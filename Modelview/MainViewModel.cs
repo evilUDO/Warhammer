@@ -20,6 +20,10 @@ namespace Viewmodel
 
         private ICommand angriffsCommand;
 
+        private ICommand rvCharCommand;
+
+        private ICommand rvGegCommand;
+
         public ICommand AddGegCommand
         {
             get
@@ -82,6 +86,32 @@ namespace Viewmodel
             set
             {
                 buttonWuerfeln = value;
+            }
+        }
+
+        public ICommand RvCharCommand
+        {
+            get
+            {
+                return rvCharCommand;
+            }
+
+            set
+            {
+                rvCharCommand = value;
+            }
+        }
+
+        public ICommand RvGegCommand
+        {
+            get
+            {
+                return rvGegCommand;
+            }
+
+            set
+            {
+                rvGegCommand = value;
             }
         }
 

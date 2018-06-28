@@ -31,7 +31,7 @@
         <TextBlock Text="Warhammer - Das Rollenspiel" Margin="5" Style="{StaticResource textBlockLayoutUe}" />
         <Button x:Name="buttonWuerfeln" Content="Würfeln" Margin="100,15" Grid.Row="1"/>
         <Button x:Name="buttonWeiter" Content="Weiter" Margin="150,20" Grid.Row="3" Command="{Binding NaechsterCommand}"/>
-        <Button x:Name="buttonAngriff" Content="Angreifen" Margin="150,20" Grid.Row="2" Command="{Binding AngriffsCommand}" CommandParameter="{Binding}"/>
+        <Button x:Name="buttonAngriff" Content="Angreifen" Margin="150,20" Grid.Row="2" Command="{Binding AngriffsCommand}" CommandParameter="{Binding ElementName=listBoxTeilnehmer, Path=SelectedItem}"/>
         <ListBox x:Name="listBoxProtokoll" Grid.Row="4" Grid.Column="0"  Margin="15" ItemsSource="{Binding Path=WarhammerKampf.ProtokollSheet}"/>
         <ListBox x:Name="listBoxTeilnehmer" Grid.RowSpan="5" Grid.Column="2" Margin="15" ItemsSource="{Binding Path=WarhammerKampf.AlleImKampf}"/>
 

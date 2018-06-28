@@ -11,7 +11,9 @@ namespace Viewmodel
     public class MainViewModel
     {
         Kampf warhammerKampf = null;
+
         private ICommand addGegCommand;
+
         private ICommand buttonWuerfeln;
 
         private ICommand addCharCommand;
@@ -19,6 +21,8 @@ namespace Viewmodel
         private ICommand naechsterCommand;
 
         private ICommand angriffsCommand;
+
+        private ICommand removeCommand;
 
         public ICommand AddGegCommand
         {
@@ -85,6 +89,19 @@ namespace Viewmodel
             }
         }
 
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                return removeCommand;
+            }
+
+            set
+            {
+                removeCommand = value;
+            }
+        }
+
         public Kampf WarhammerKampf
         {
             get
@@ -109,6 +126,14 @@ namespace Viewmodel
 
             this.AngriffsCommand = new UserCommand(new Action<object>(Angriff));
             this.ButtonWuerfeln = new UserCommand(new Action<object>(Wuerfeln));
+
+            this.RemoveCommand = new UserCommand(new Action<object>(Remove));
+        }
+
+        private void Remove(Object obj)
+        {
+            Geschoepf gesch = (Geschoepf)obj;
+            warhammerKampf.Entferne(gesch);
         }
 
         private void AddGegner(Object obj)

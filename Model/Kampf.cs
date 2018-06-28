@@ -307,5 +307,15 @@ namespace Model
                 }
             }
         }
+
+        public void Entferne(Geschoepf gesch)
+        {
+            if (alleImKampf.Contains(gesch))
+            {
+                alleImKampf.Remove(gesch); 
+            }
+        }
     }
+
+    
 }

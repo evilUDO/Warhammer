@@ -132,7 +132,17 @@ namespace Viewmodel
 
         private void Remove(Object obj)
         {
-            Geschoepf gesch = (Geschoepf)obj;
+            String gname = (String)obj;
+            Geschoepf gesch = null; 
+
+            foreach(Geschoepf g in WarhammerKampf.AlleImKampf)
+            {
+                if(g.Name.Equals(gname))
+                {
+                    gesch = g;
+                }
+            }
+
             warhammerKampf.Entferne(gesch);
         }
 
@@ -156,7 +166,17 @@ namespace Viewmodel
 
         private void Angriff(Object obj)
         {
-            Geschoepf verteidiger = (Geschoepf)obj;
+            String gname = (String)obj;
+            Geschoepf verteidiger = null;
+
+            foreach (Geschoepf g in WarhammerKampf.AlleImKampf)
+            {
+                if (g.Name.Equals(gname))
+                {
+                    verteidiger = g;
+                }
+            }
+
             WarhammerKampf.PruefeWaffe(verteidiger);
         }
 

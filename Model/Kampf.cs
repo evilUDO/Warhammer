@@ -251,7 +251,10 @@ namespace Model
 
         public void PruefeWaffe(Geschoepf verteidiger)
         {
-            PruefeTreffer(verteidiger);
+            if (verteidiger != null)
+            {
+                PruefeTreffer(verteidiger); 
+            }
         }
 
         public void PruefeTreffer(Geschoepf verteidiger)

@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Model
 {
-    public class Kampf : INotifyPropertyChanged
+    public class Kampf
     {
         ObservableCollection<Geschoepf> alleGegner = null;
         ObservableCollection<Geschoepf> alleSpieler = null;
@@ -32,14 +32,7 @@ namespace Model
             new DBread(AlleSpieler, AlleGegner);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            if(PropertyChanged != null)
-            {
-                PropertyChanged(this, e);
-            }
-        }
+  
 
         public Geschoepf AktuellerAngreifer
         {
@@ -51,7 +44,6 @@ namespace Model
             set
             {
                 aktuellerAngreifer = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("aktAngr"));
             }
         }
 
@@ -180,7 +172,6 @@ namespace Model
 
         public void PruefeAktuell()
         {
-        
             AktuellerAngreifer = AlleImKampf.ElementAt(index);
             protokollSheet.Add(String.Format("{0} {1}", AktuellerAngreifer.Name, "ist nun an der Reihe"));
         }
@@ -253,6 +244,7 @@ namespace Model
                 String protokoll = String.Format("{0} {1} {2}", AktuellerAngreifer.Name, "misslingt der Angriff auf", verteidiger.Name);
                 ProtokollSheet.Add(protokoll);
             }
+            NaechsterSpieler();
         }
 
         public void NaechsterSpieler()
@@ -368,6 +360,7 @@ namespace Model
                 {
                     alleImKampf.Remove(gesch);
                     ProtokollSheet.Add(String.Format("{0} hatt den Kampf verlassen", gesch.Name));
+                    AktualisiereAlle();
                 } 
             }
         }
